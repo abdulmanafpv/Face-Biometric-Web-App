@@ -1,0 +1,713 @@
+{% load static %}
+<html>
+<head>
+  <title>Face Recognition system</title>
+    <meta http-equiv="refresh" content="20" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+  .navbar-dark .navbar-nav .nav-link
+  {
+  color:white;
+  }
+    @font-face {
+  font-family: acme;
+  src: url('static/font/Acme-Regular.ttf');
+}
+body
+{
+font-family:acme;
+color:#ffff;
+}
+
+                .image-link {
+  cursor: -webkit-zoom-in;
+  cursor: -moz-zoom-in;
+  cursor: zoom-in;
+}
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+    opacity: 0;
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+        opacity: 1;
+}
+.mfp-with-zoom.mfp-ready.mfp-bg {
+        opacity: 0.8;
+}
+
+
+
+.page-item li
+{
+padding-left:20px;
+}
+table th , table td{
+    text-align: center;
+}
+
+table tr:nth-child(even){
+    background-color: #e4e3e3
+}
+
+th {
+  background: #333;
+  color: #fff;
+}
+
+.pagination {
+  margin: 0;
+}
+
+.pagination li:hover{
+    cursor: pointer;
+}
+
+.header_wrap {
+  padding:30px 0;
+}
+.num_rows {
+  width: 20%;
+  float:left;
+}
+.tb_search{
+  width: 20%;
+  float:right;
+}
+.pagination-container {
+  width: 70%;
+  float:left;
+}
+
+.rows_count {
+  width: 20%;
+  float:right;
+  text-align:right;
+  color: #999;
+}
+.tb_search {
+    width: 50%;
+    float: right;
+}
+
+    body
+    {
+    background:url('static/img/background.jpg');
+    background-size:cover;
+    background-position: bottom;
+    }
+
+              .image-link {
+  cursor: -webkit-zoom-in;
+  cursor: -moz-zoom-in;
+  cursor: zoom-in;
+}
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+    opacity: 0;
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+        opacity: 1;
+}
+.mfp-with-zoom.mfp-ready.mfp-bg {
+        opacity: 0.8;
+}
+
+.mfp-title {
+  text-align: center;
+  padding: 6px 0;
+}
+
+#section-wapper
+{
+ background: linear-gradient(105deg, white, transparent);
+padding:25px;
+}
+#pagination li {
+    margin-left: 21px;
+}
+
+#pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    color: #fff;
+    font-size: 18px;
+}
+
+#section
+{
+   background: linear-gradient(118deg, black, transparent);
+}
+.frame
+{
+height:750px;
+}
+.img-thumbnail {
+
+    background-color: #000;
+    border:1px;
+
+}
+ table td {
+    text-align: center;
+    color: #ffff;
+}
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    background: linear-gradient(217deg, #212529, transparent) !important;
+}
+  </style>
+</head>
+<body>
+<!--navbar-->
+<!--navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="static/img/logo.jpg" width="55px" height="55px"><span class="ms-4">Face Recognition System </span> </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+            <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}"><i class="fa fas fa-duotone fa-house-user"></i><span class="ms-2">HOME</span></a>
+        </li>
+            <li class="nav-item">
+          <a class="nav-link" href="{% url 'registration' %}"><i class="fa fas fa-duotone fa-id-card"></i><span class="ms-2">REGISTRATION</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'add_photos' %}"><i class="fa fas fa-light fa-camera-retro"></i><span class="ms-2">ADD PHOTO</span></a>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!---->
+
+<!---->
+<section>
+         <div class="container-fluid">
+              <div class="row">
+                   <div class="col-lg-7 col-md-7 col-sm-12  ">
+
+                     <div class="float-end">
+                         <img src="{% url 'video_feed' %}" class="img-thumbnail img-responsive frame">
+                     </div>
+                    </div>
+                   <div class="col-lg-5 col-md-5 col-sm-12">
+
+
+
+
+                     <!--table-->
+                    <div class="container" id="section">
+      <div class="header_wrap">
+            <h4 class="mt-3 text-white">Date: {{ date|date:"D, d M, Y" }}</h4>
+
+          <div class="">
+          <form action="{% url 'search_result' %}"  style="margin: 0">
+     <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <input id="search_submit" class="form-control" type="date" name="q">
+        </div>
+         <div class="col-xl-6 col-lg-6 col-md-6s col-sm-12">
+             <div class="float-end">
+              <button id="searchsubmit" class="btn btn-primary" type="submit" >Submit</button>
+         </div>
+         </div>
+
+     </div>
+</form></div>
+        <div class="num_rows pt-sm-2">
+
+				<div class="form-group "> 	<!--		Show Numbers Of Rows 		-->
+			 		<select class  ="form-control" name="state" id="maxRows">
+
+
+						 <option value="4">4</option>
+
+
+                    </select>
+
+			  	</div>
+        </div>
+
+        <div class="tb_search pt-sm-2">
+<input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="form-control">
+        </div>
+      </div>
+<table  class="table table-hover table-responsive table-bordered "  id= "table-id">
+
+
+<thead>
+                      <tr>
+
+                         <th class="text-white">Name</th>
+                         <th class="text-white">Gender</th>
+      	                 <th class="text-white">timestamp</th>
+                          <th class="text-white">Image</th>
+
+	                  </tr>
+  </thead>
+      {% for det in det_list %}
+<tbody>
+	     <tr>
+
+                         <td class=" text-white"><a href="{% url 'registration' %}"> {{det.emp_id}}</a></td>
+
+
+                         <td class=" text-white"> {{det.emp_id.gender}}</td>
+                         <td class="text-white">{{det.time_stamp}}</td>
+                         <td class="text-white">
+                             {% if det.emp_id.photo == '' %}
+                             <a href="{% static 'img/noimg.png' %}" data-source="ensure.png" class="with-caption image-link" title="The caption">
+                             <img src="{% static 'img/noimg.png' %}" height="100" style="margin-bottom: 5px;">
+                              {% else %}
+                             <a href="{{ det.emp_id.photo.url }}" data-source="ensure.png" class="with-caption image-link" title="The caption">
+                             <img src="{{ det.emp_id.photo.url }}" height="100" style="margin-bottom: 5px;">
+                             {% endif %}
+
+                         </td>
+
+
+                     </tr>
+    <tbody>
+
+      {% endfor %}
+
+</table>
+
+ <!--		Start Pagination -->
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 col-lg-12 ">
+                                    <div class="pagination-container ">
+				<nav class="">
+				  <ul class="pagination justify-content-end" id="pagination">
+
+            <li data-page="prev" >
+								     <span> Previous</span>
+								    </li>
+				   <!--	Here the JS Function Will Add the Rows -->
+        <li data-page="next" id="prev">
+								       <span>  Next</span>
+								    </li>
+				  </ul>
+				</nav>
+			</div>
+
+</div> <!-- 		End of Container -->
+                                </div>
+                            </div>
+                        </div>
+
+
+              </div>
+         </div>
+
+</section>
+<!---->
+<script>
+    $('.without-caption').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        mainClass: 'mfp-no-margins mfp-with-zoom',
+        image: {
+            verticalFit: true
+        },
+        zoom: {
+            enabled: true,
+            duration: 300
+        }
+    });
+
+$('.with-caption').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        mainClass: 'mfp-with-zoom mfp-img-mobile',
+        image: {
+            verticalFit: true,
+            titleSrc: function(item) {
+                return item.el.attr('title') + ' &middot; <a
+class="image-source-link" href="'+item.el.attr('data-source')+'"
+target="_blank">image source</a>';
+            }
+        },
+        zoom: {
+            enabled: true
+        }
+    });
+
+</script>
+<script>
+    $('.without-caption').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        mainClass: 'mfp-no-margins mfp-with-zoom',
+        image: {
+            verticalFit: true
+        },
+        zoom: {
+            enabled: true,
+            duration: 300
+        }
+    });
+
+$('.with-caption').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        mainClass: 'mfp-with-zoom mfp-img-mobile',
+        image: {
+            verticalFit: true,
+            titleSrc: function(item) {
+                return item.el.attr('title') + ' &middot; <a
+class="image-source-link" href="'+item.el.attr('data-source')+'"
+target="_blank">image source</a>';
+            }
+        },
+        zoom: {
+            enabled: true
+        }
+    });
+
+</script>
+<!--add-->
+<script>
+    $('.without-caption').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        mainClass: 'mfp-no-margins mfp-with-zoom',
+        image: {
+            verticalFit: true
+        },
+        zoom: {
+            enabled: true,
+            duration: 300
+        }
+    });
+
+$('.with-caption').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        mainClass: 'mfp-with-zoom mfp-img-mobile',
+        image: {
+            verticalFit: true,
+            titleSrc: function(item) {
+                return item.el.attr('title') + ' &middot; <a
+class="image-source-link" href="'+item.el.attr('data-source')+'"
+target="_blank">image source</a>';
+            }
+        },
+        zoom: {
+            enabled: true
+        }
+    });
+
+</script>
+<script>
+    $('.without-caption').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        mainClass: 'mfp-no-margins mfp-with-zoom',
+        image: {
+            verticalFit: true
+        },
+        zoom: {
+            enabled: true,
+            duration: 300
+        }
+    });
+
+$('.with-caption').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        mainClass: 'mfp-with-zoom mfp-img-mobile',
+        image: {
+            verticalFit: true,
+            titleSrc: function(item) {
+                return item.el.attr('title') + ' &middot; <a
+class="image-source-link" href="'+item.el.attr('data-source')+'"
+target="_blank">image source</a>';
+            }
+        },
+        zoom: {
+            enabled: true
+        }
+    });
+
+</script>
+<script>
+    $('.without-caption').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        mainClass: 'mfp-no-margins mfp-with-zoom',
+        image: {
+            verticalFit: true
+        },
+        zoom: {
+            enabled: true,
+            duration: 300
+        }
+    });
+
+$('.with-caption').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        mainClass: 'mfp-with-zoom mfp-img-mobile',
+        image: {
+            verticalFit: true,
+            titleSrc: function(item) {
+                return item.el.attr('title') + ' &middot; <a
+class="image-source-link" href="'+item.el.attr('data-source')+'"
+target="_blank">image source</a>';
+            }
+        },
+        zoom: {
+            enabled: true
+        }
+    });
+
+</script>
+<script>
+
+// All Table search script
+function FilterkeyWord_all_table() {
+
+// Count td if you want to search on all table instead of specific column
+
+  var count = $('.table').children('tbody').children('tr:first-child').children('td').length;
+
+        // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("search_input_all");
+  var input_value =     document.getElementById("search_input_all").value;
+        filter = input.value.toLowerCase();
+  if(input_value !=''){
+        table = document.getElementById("table-id");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i=1; i < tr.length; i++) {
+
+          var flag = 0;
+
+          for(j = 0; j < count; j++){
+            td = tr[i].getElementsByTagName("td")[j];
+            if (td) {
+
+                var td_text = td.innerHTML;
+                if (td.innerHTML.toLowerCase().indexOf(filter) > -1) {
+                //var td_text = td.innerHTML;
+                //td.innerHTML = 'shaban';
+                  flag = 1;
+                } else {
+                  //DO NOTHING
+                }
+              }
+            }
+          if(flag==1){
+                     tr[i].style.display = "";
+          }else {
+             tr[i].style.display = "none";
+          }
+        }
+    }else {
+      //RESET TABLE
+      $('#maxRows').trigger('change');
+    }
+}
+</script>
+<!--new-->
+<script>
+               getPagination('#table-id');
+					//getPagination('.table-class');
+					//getPagination('table');
+
+		  /*					PAGINATION
+		  - on change max rows select options fade out all rows gt option value mx = 4
+		  - append pagination list as per numbers of rows / max rows option (20row/5= 4pages )
+		  - each pagination li on click -> fade out all tr gt max rows * li num and (5*pagenum 2 = 10 rows)
+		  - fade out all tr lt max rows * li num - max rows ((5*pagenum 2 = 10) - 5)
+		  - fade in all tr between (maxRows*PageNum) and (maxRows*pageNum)- MaxRows
+		  */
+
+
+function getPagination(table) {
+  var lastPage = 1;
+
+  $('#maxRows')
+    .on('change', function(evt) {
+      //$('.paginationprev').html('');						// reset pagination
+
+     lastPage = 1;
+      $('.pagination')
+        .find('li')
+        .slice(1, -1)
+        .remove();
+      var trnum = 0; // reset tr counter
+      var maxRows = parseInt($(this).val()); // get Max Rows from select option
+
+      if (maxRows == 5000) {
+        $('.pagination').hide();
+      } else {
+        $('.pagination').show();
+      }
+
+      var totalRows = $(table + ' tbody tr').length; // numbers of rows
+      $(table + ' tr:gt(0)').each(function() {
+        // each TR in  table and not the header
+        trnum++; // Start Counter
+        if (trnum > maxRows) {
+          // if tr number gt maxRows
+
+          $(this).hide(); // fade it out
+        }
+        if (trnum <= maxRows) {
+          $(this).show();
+        } // else fade in Important in case if it ..
+      }); //  was fade out to fade it in
+      if (totalRows > maxRows) {
+        // if tr total rows gt max rows option
+        var pagenum = Math.ceil(totalRows / maxRows); // ceil total(rows/maxrows) to get ..
+        //	numbers of pages
+        for (var i = 1; i <= pagenum; ) {
+          // for each page append pagination li
+          $('.pagination #prev')
+            .before(
+              '<li data-page="' +
+                i +
+                '">\
+								  <span>' +
+                i++ +
+                '<span class="sr-only">(current)</span></span>\
+								</li>'
+            )
+            .show();
+        } // end for i
+      } // end if row count > max rows
+      $('.pagination [data-page="1"]').addClass('active'); // add active class to the first li
+      $('.pagination li').on('click', function(evt) {
+        // on click each page
+        evt.stopImmediatePropagation();
+        evt.preventDefault();
+        var pageNum = $(this).attr('data-page'); // get it's number
+
+        var maxRows = parseInt($('#maxRows').val()); // get Max Rows from select option
+
+        if (pageNum == 'prev') {
+          if (lastPage == 1) {
+            return;
+          }
+          pageNum = --lastPage;
+        }
+        if (pageNum == 'next') {
+          if (lastPage == $('.pagination li').length - 2) {
+            return;
+          }
+          pageNum = ++lastPage;
+        }
+
+        lastPage = pageNum;
+        var trIndex = 0; // reset tr counter
+        $('.pagination li').removeClass('active'); // remove active class from all li
+        $('.pagination [data-page="' + lastPage + '"]').addClass('active'); // add active class to the clicked
+        // $(this).addClass('active');					// add active class to the clicked
+	  	limitPagging();
+        $(table + ' tr:gt(0)').each(function() {
+          // each tr in table not the header
+          trIndex++; // tr index counter
+          // if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
+          if (
+            trIndex > maxRows * pageNum ||
+            trIndex <= maxRows * pageNum - maxRows
+          ) {
+            $(this).hide();
+          } else {
+            $(this).show();
+          } //else fade in
+        }); // end of for each tr in table
+      }); // end of on click pagination list
+	  limitPagging();
+    })
+    .val(4)
+    .change();
+
+  // end of on select change
+
+  // END OF PAGINATION
+}
+
+function limitPagging(){
+	// alert($('.pagination li').length)
+
+	if($('.pagination li').length > 7 ){
+			if( $('.pagination li.active').attr('data-page') <= 3 ){
+			$('.pagination li:gt(5)').hide();
+			$('.pagination li:lt(5)').show();
+			$('.pagination [data-page="next"]').show();
+		}if ($('.pagination li.active').attr('data-page') > 3){
+			$('.pagination li:gt(0)').hide();
+			$('.pagination [data-page="next"]').show();
+			for( let i = ( parseInt($('.pagination li.active').attr('data-page'))  -2 )  ; i <= ( parseInt($('.pagination li.active').attr('data-page'))  + 2 ) ; i++ ){
+				$('.pagination [data-page="'+i+'"]').show();
+
+			}
+
+		}
+	}
+}
+
+$(function() {
+  // Just to append id number for each row
+  $('table tr:eq(0)').prepend('<th> ID </th>');
+
+  var id = 0;
+
+  $('table tr:gt(0)').each(function() {
+    id++;
+    $(this).prepend('<td>' + id + '</td>');
+  });
+});
+
+
+</script>
+<!---->
+</body>
+</html>

@@ -1,0 +1,279 @@
+{% load static %}
+<html lang="en">
+<head>
+  <title>Face Recognition System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <style>
+              .image-link {
+  cursor: -webkit-zoom-in;
+  cursor: -moz-zoom-in;
+  cursor: zoom-in;
+}
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+    opacity: 0;
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+        opacity: 1;
+}
+.mfp-with-zoom.mfp-ready.mfp-bg {
+        opacity: 0.8;
+}
+
+
+
+
+
+
+.mfp-title {
+  text-align: center;
+  padding: 6px 0;
+}
+  section
+  {
+  margin-top:100px;
+  }
+#section-wapper
+{
+ background: linear-gradient(105deg, white, transparent);
+padding:25px;
+}
+</style>
+</head>
+<body style="background-image:url('static/img/slider1.jpg') ; ">
+
+<!--navbar-->
+<!--navbar-->
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="static/img/logo.jpg" width="55px" height="55px"><span class="me-3">Face Recognition System </span> </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+            <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}"><i class="fa fas fa-duotone fa-house-user"></i><span class="ms-2">HOME</span></a>
+        </li>
+            <li class="nav-item">
+          <a class="nav-link" href="{% url 'registration' %}"><i class="fa fas fa-duotone fa-id-card"></i><span class="ms-2">REGISTRATION</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'add_photos' %}"><i class="fa fas fa-light fa-camera-retro"></i><span class="ms-2">ADD PHOTO</span></a>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!---->
+
+<!---->
+<section id="container">
+        <div class="container" id="section-wapper">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+
+<form action="{% url 'search_result' %}" style="margin: 0">
+     <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <input id="search_submit" class="form-control" type="date" name="q">
+        </div>
+         <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+              <button id="searchsubmit" class="btn btn-primary" type="submit" >Submit</button>
+         </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+              <div class="float-end">
+                         <a href="" class="btn btn-primary" ><i class="fa fas fa-download me-3"></i>Download </a>
+              </div>
+
+
+         </div>
+     </div>
+</form>
+        </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+             <h4 class="mt-3">Date: {{ date|date:"D, d M, Y" }}</h4>
+
+  <input type="text" id="myInput" onkeyup="myFunction()"  class="form-control" placeholder="Search for name.." style="float: right; padding: 10px;">
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <table class="table table-secondary table-responsive table-bordered"  id="myTable">
+                <thead class="text-center">
+                <tr>
+                     	<th>Name</th>
+                         <th>Gender</th>
+      	                 <th>timestamp</th>
+                          <th>Image</th>
+                </tr>
+                </thead>
+                     {% for det in det_list %}
+                <tbody class="text-center fw-bold">
+                     <tr>
+
+                         <td> {{det.emp_id}}</td>
+                         <td> {{det.emp_id.gender}}</td>
+                         <td>{{det.time_stamp}}</td>
+                         <td>
+                             <a href="{{ det.emp_id.photo.url }}" data-source="ensure.png" class="with-caption
+image-link" title="The caption">
+                             <img src="{{ det.emp_id.photo.url }}" height="100" style="margin-bottom: 5px;"></td>
+                         </td>
+
+
+                     </tr>
+                </tbody>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+</script>
+
+
+<!--  <table id="myTable">-->
+<!--    <tr class="header">
+   	<th width="200">Name</th>
+        <th width="200">Gender</th>
+        <th width="300">timestamp</th>
+      <th width="100">Image</th>
+ 	</tr>
+ 	{% for det in det_list %}
+
+        <tr>
+            <td></td>
+        <td></td>
+           <td></td>
+           <td>
+             <img src="{{ det.photo.url }}" height="100" style="margin-bottom: 5px;">
+            <img src="{{ det.emp_id.photo.url}}" height="100" style="margin-bottom: 5px;">
+             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#{{ det.id }}">Click to enlarge</button>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+
+</button>
+
+               <div id="{{ det.id }}" class="modal fade" role="dialog" style="background:">
+                  <div class="modal-dialog modal-lg" style="text-align: center">
+
+
+                   <div class="modal-content">
+                   <div class="modal-body">            <img src="{{ det.emp_id.photo.url }}">
+                    </div>
+                </div>
+
+                 </div>
+                </div>
+                <div class="modal" id="myModal">
+ <div class="modal-dialog">
+  <div class="modal-content">
+
+
+
+
+<!--      &lt;!&ndash; Modal body &ndash;&gt;-->
+<!--      <div class="modal-body">-->
+<!--       <img src="{{ det.emp_id.photo.url }}">-->
+<!--      </div>-->
+
+<!--      &lt;!&ndash; Modal footer &ndash;&gt;-->
+
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--            </td>-->
+
+<!--        </tr>-->
+<!--      {% endfor %}-->
+
+<!--  </table>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+</section>
+
+<script>
+    $('.without-caption').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        mainClass: 'mfp-no-margins mfp-with-zoom',
+        image: {
+            verticalFit: true
+        },
+        zoom: {
+            enabled: true,
+            duration: 300
+        }
+    });
+
+$('.with-caption').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        mainClass: 'mfp-with-zoom mfp-img-mobile',
+        image: {
+            verticalFit: true,
+            titleSrc: function(item) {
+                return item.el.attr('title') + ' &middot; <a
+class="image-source-link" href="'+item.el.attr('data-source')+'"
+target="_blank">image source</a>';
+            }
+        },
+        zoom: {
+            enabled: true
+        }
+    });
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
