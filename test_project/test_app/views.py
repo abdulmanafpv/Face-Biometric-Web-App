@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from test_app.camera import VideoCamera
 from .models import Employee, Detected
+from django.conf import settings
 from .forms import EmployeeForm
 from django.http import StreamingHttpResponse
 from django.http import HttpResponseRedirect, HttpResponse
@@ -14,12 +15,9 @@ from django.utils import timezone
 from django.db.models import Q
 from cachetools import TTLCache
 import cv2,os,urllib.request
+from django.core.paginator import Paginator, EmptyPage,InvalidPage
+# from test_app.camera import unknown
 cache = TTLCache(maxsize=20, ttl=60)
-# Create your views here.
-
-
-
-
 
 
 def identify1(frame, name, buf, buf_length, known_conf):
@@ -57,8 +55,19 @@ def index(request):
     print(det_list)
 
     # date_formatted = datetime.datetime.today().date()
-    det_list = Detected.objects.filter(time_stamp__date=date_formatted).order_by('time_stamp').reverse()
-    return render(request, 'home.html',{'det_list':det_list,'date': date_formatted})
+    det_list = Detected.objects.filter(time_stamp__date=date_formatted).order_by('time_stamp').reverse()[:6]
+    emp_list = Employee.objects.all()
+    if request.method == "POST":
+        form = EmployeeForm(request.POST, request.FILES)
+        if form.is_valid():
+            emp = form.save()
+            print(emp)
+            return HttpResponseRedirect(reverse('index'))
+    else:
+        form = EmployeeForm()
+
+
+    return render(request, 'home.html',{'det_list':det_list,'date': date_formatted,'emp_list': emp_list,'form':form})
 
 
 
@@ -182,6 +191,12 @@ def search_result(request):
     return render(request,'serch-result.html',{'result':result,'form':form})
 
 
+def unknown_people(request):
+    unknown()
+    return HttpResponseRedirect(reverse('registration'))
 
 
-
+# def test(request):
+#     obj = Detected.object.filter(emp_id == 'unknown')
+#     for i in obj:
+#         print(i.emp_id)

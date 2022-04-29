@@ -1,6 +1,7 @@
 import cv2,os,urllib.request
 from imutils.video import VideoStream
 import imutils
+from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -18,12 +19,19 @@ from imutils.video import FPS
 import cv2
 import pickle
 import face_recognition
+import datetime, time
 import datetime
 import sys
 from cachetools import TTLCache
 import xlwt
 from django.db.models import Q
+
 cache = TTLCache(maxsize=20, ttl=60)
+
+
+#
+def unknown():
+    print('unknown people')
 
 
 
@@ -112,6 +120,7 @@ def predict(rgb_frame, knn_clf=None, model_path=None, distance_threshold=0.5):
 
 
 
+
 global buf_length, known_conf ,i
 buf_length = 10
 known_conf = 6
@@ -133,6 +142,7 @@ class VideoCamera(object):
 		self.i=0
 		self.process_this_frame=True
 		self.imagePath = sys.argv[1]
+		self.face=0
 
 
 
@@ -205,24 +215,31 @@ class VideoCamera(object):
 
 
 			face_names.append(name)
+			# if name=='unknown':
+			# 	time.sleep(5)
+				# unknown()
+				# time.sleep(30)
+				# self.video.release()
 
-			if name=='unknown':
-				now = datetime.datetime.today()
-				# roi_color = frame[right:right+ left, top:top + bottom]
-				# cv2.imwrite(str(bottom) + str(left) + '_faces.jpg', roi_color)
-				p = os.path.sep.join(['test_app/facerec/new', "shot_{}.png".format(str(now).replace(":", ''))])
-
-
-				cv2.imwrite(p, frame)
+		# 	now = datetime.datetime.today()
+			# 	# roi_color = frame[right:right+ left, top:top + bottom]
+			# 	# cv2.imwrite(str(bottom) + str(left) + '_faces.jpg', roi_color)
+			# 	p = os.path.sep.join(['test_app/facerec/new', "shot_{}.png".format(str(now).replace(":", ''))])
+			# 	# reverse('registration')
+			#
+			# 	cv2.imwrite(p , frame)
 
 		# cv2.imwrite('faces_detected.jpg{now}', frame)
 			# print("[INFO] Image faces_detected.jpg written to filesystem: ", status)
+
 
 		self.buf[self.i] = face_names
 		self.i = (self.i + 1) % self.buf_length
 		# frame_flip = cv2.flip(frame,1)
 		ret, frame = cv2.imencode('.jpg', frame)
+
 		return frame.tobytes()
+
 
 
 

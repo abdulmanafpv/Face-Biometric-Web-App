@@ -12,6 +12,7 @@ urlpatterns = [
     path('train_model', views.train_model, name='train_model'),
     path('search_result', views.search_result, name='search_result'),
     path('train_data', views.train_data, name='train_data'),
+    path('unknown_people', views.train_data, name='unknown_people'),
 
 
 
