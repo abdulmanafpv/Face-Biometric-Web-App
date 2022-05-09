@@ -31,7 +31,10 @@ cache = TTLCache(maxsize=20, ttl=60)
 
 #
 def unknown():
-    print('unknown people')
+	# print('unknown people')
+	cv2.waitKey(0)
+	# return HttpResponseRedirect(reverse('registration'))
+
 
 
 
@@ -215,19 +218,35 @@ class VideoCamera(object):
 
 
 			face_names.append(name)
-			# if name=='unknown':
-			# 	time.sleep(5)
-				# unknown()
-				# time.sleep(30)
-				# self.video.release()
 
-		# 	now = datetime.datetime.today()
+
+			#
+			# if name == 'unknown':
+			# 	unknown()
+			if name=='unknown':
+				self.video.release()
+
+
+
+
+
+		# cv2.waitKey(0)
+				# break
+				# return HttpResponseRedirect(reverse('registration'))
+				# pass
+				# now = datetime.datetime.today()
 			# 	# roi_color = frame[right:right+ left, top:top + bottom]
 			# 	# cv2.imwrite(str(bottom) + str(left) + '_faces.jpg', roi_color)
-			# 	p = os.path.sep.join(['test_app/facerec/new', "shot_{}.png".format(str(now).replace(":", ''))])
+			# 	p=os.path.sep.join(['test_app/facerec/new', "faces_detected_{}.png".format(str(now).replace(":", ''))])
 			# 	# reverse('registration')
-			#
 			# 	cv2.imwrite(p , frame)
+			# 	cv2.imshow('color image',cv2.imwrite(p , frame) )
+
+				# time.sleep(0.5)
+
+			# if name == 'unknown':
+			# 	# time.sleep(0.9)
+			# 	return HttpResponseRedirect(reverse('registration'))
 
 		# cv2.imwrite('faces_detected.jpg{now}', frame)
 			# print("[INFO] Image faces_detected.jpg written to filesystem: ", status)

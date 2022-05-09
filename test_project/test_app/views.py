@@ -200,3 +200,6 @@ def unknown_people(request):
 #     obj = Detected.object.filter(emp_id == 'unknown')
 #     for i in obj:
 #         print(i.emp_id)
+
+def refresh(request):
+    return HttpResponseRedirect(reverse('index'))
