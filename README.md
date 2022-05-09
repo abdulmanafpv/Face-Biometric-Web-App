@@ -16,6 +16,7 @@ This is a Face Recognition Biometric WebApp. This WebApp is used for live monito
 
 ![Screenshot (33)](https://user-images.githubusercontent.com/84491967/167353041-d3343bcb-082a-4c34-a6f6-57075bdf2d73.png)
 
+![Screenshot (34)](https://user-images.githubusercontent.com/84491967/167353167-35ff6edb-b729-4ed6-b91e-9668f19f607a.png)
 
 
 ## Objective
