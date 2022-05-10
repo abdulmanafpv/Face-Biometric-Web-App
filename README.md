@@ -46,7 +46,7 @@ For creating Classification model I used:
 
 1. Python
 2. HTML5
-3. JS
+3. JavaScript
 4. Dlib
 5. Face-recognition
 6. Pickle
