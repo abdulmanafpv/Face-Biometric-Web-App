@@ -62,6 +62,8 @@ For creating Classification model I used:
 ![Screenshot (157)](https://user-images.githubusercontent.com/84491967/140642806-d77b4a89-7c81-4fd7-83da-2c1f694212f6.png)
 ![big_thumb](https://user-images.githubusercontent.com/84491967/168413635-b99966ab-e0c8-4947-b04f-ba2578d9ac39.jpg)
 ![1_JQofwNWO5ancK5ug2ezDgw](https://user-images.githubusercontent.com/84491967/168413355-1b0a5d3c-2588-46d3-a300-4320b7a43db2.png)
+![django](https://user-images.githubusercontent.com/84491967/168423112-eda30933-2560-4848-97ef-a4a1017c6f7b.jpg)
+
 
 
 if you liked what you saw, want to have a chat with me about the portfolio, work opportunities or collabaration, shoot an email at pvmanaf02@gmail.com
