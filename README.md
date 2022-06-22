@@ -3,7 +3,7 @@
 
 ## About
 
-This is a Face Recognition Biometric WebApp. This WebApp is used for live monitoring people by recognizing their faces, using IP camera
+This is a Face Recognition Biometric WebApp. This WebApp is used for live monitoring people by recognizing their faces, using IP camera. This Web App helps for catching thieves and criminals.
 
 ## Images
 ![Screenshot (25)](https://user-images.githubusercontent.com/84491967/167348380-a39c5a61-6c52-4745-9e19-feaa225863b0.png)
@@ -24,7 +24,8 @@ This is a Face Recognition Biometric WebApp. This WebApp is used for live monito
 
 ## Objective
 
-Create a WebApp for  live monitoring people by recognizing their faces, using IP camera
+Create a WebApp for  live monitoring people by recognizing their faces, using IP camera and this Web App helps for catching thieves and criminals.
+
 
 ## Steps and tasks
 
