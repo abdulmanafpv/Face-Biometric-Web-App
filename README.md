@@ -36,6 +36,10 @@ Create a WebApp for  live monitoring people by recognizing their faces, using IP
 ## Contents
 
  This WebApp is used for live monitoring people by recognizing their faces, using IP camera
+ 
+ ## Features of this Web App.
+ 
+ 
 
 ## For classification of the faces, I developed a model.
 
