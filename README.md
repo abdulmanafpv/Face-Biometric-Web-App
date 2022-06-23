@@ -62,7 +62,8 @@ For creating Classification model I used:
 8. Django
 9. OpenCV
 10. Scikit-learn
-11. AWS
+11. Cmake
+12. AWS
 
 ## Technologies Used
 
